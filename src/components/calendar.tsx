@@ -16,9 +16,6 @@ const Calendar: FC<CalendarProps> = () => {
     dateTime: null,
   })
   
-  console.log(date.dateTime)
-  console.log(date.justDate)
-
   const getTimes = () => {
     if (!date.justDate) return
     const { justDate } = date

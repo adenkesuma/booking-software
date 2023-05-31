@@ -1,7 +1,7 @@
 import { type NextPage } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import Calendar from "@/components/Calendar.tsx"
+import Calendar from "@/components/calendar.tsx"
 
 const Home: NextPage = () => {
   return (
