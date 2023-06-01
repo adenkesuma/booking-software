@@ -1,7 +1,9 @@
 import { publicProcedure, router } from '../trpc.ts'
 import { nanoid } from 'nanoid'
-import { zod } from 'zod'
+import { z } from 'zod'
+import { SignJWT } from 'jose'
 import { getJwtSecretKey } from '../../../lib/auth'
+import cookie from 'cookie'
 
 export const adminRouter = router({
   login: publicProcedure
@@ -19,6 +21,21 @@ export const adminRouter = router({
           .setIssuedAt()
           .setExpirationTime('1h')
           .sign(new TextEncoder().encode(getJwtSecretKey()))
+
+        res.setHeader('Set-Cookie', cookie.serialize(
+          'user-token', token, {
+            httpOnly: true,
+            path: '/',
+            secure: process.env.NODE_ENV = 'production',
+          }
+        ))
+
+        return { success: true }
       }
+
+      throw new TRPCError({
+        code: 'UNAUTHORIZED',
+        message: 'Invalid Email or Password'
+      })
     }),
 })

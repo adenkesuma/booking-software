@@ -17,6 +17,8 @@
     "@trpc/next": "^10.26.0",
     "@trpc/react-query": "^10.26.0",
     "@trpc/server": "^10.26.0",
+    "@types/cookie": "^0.5.1",
+    "cookie": "^0.5.0",
     "date-fns": "^2.30.0",
     "jose": "^4.14.4",
     "nanoid": "^4.0.2",

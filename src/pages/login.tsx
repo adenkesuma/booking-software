@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { HiLockClosed } from 'react-icons/hi'
- 
+import { trpc } from '../utils/trpc' 
 interface LoginProps {}
 
 const Login: FC<loginProps> = () => {
@@ -9,10 +9,12 @@ const Login: FC<loginProps> = () => {
     password: '',
   })
   
-  const handlChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
     setInput((prev) => ({...prev, [name]: value}))
   }
+  
+  const { mutate: login, error } = trpc.admin.login.useMutation()  
 
   return (
      <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
